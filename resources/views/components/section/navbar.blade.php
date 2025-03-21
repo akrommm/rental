@@ -12,8 +12,6 @@
             <ul>
                 <li><a class="nav-link scrollto {{ request()->is('beranda') ? 'active' : '' }}" href="{{ url('/') }}">Beranda</a></li>
                 <li><a class="nav-link scrollto {{ request()->is('rental') ? 'active' : '' }}" href="{{ url('rental') }}">Daftar Rental</a></li>
-                <li><a class="nav-link scrollto {{ request()->is('jadwal') ? 'active' : '' }}" href="{{ url('jadwal') }}">Jadwal</a></li>
-                <li><a class="nav-link scrollto {{ request()->is('kontak') ? 'active' : '' }}" href="{{ url('kontak') }}">Kontak</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-8 col-md-10" data-aos="fade-up" data-aos-delay="200">
-                    <h1>Rental Gaming</h1>
+                    <h1>Daftar Rental</h1>
                     <p class="lead text-muted">Tempat terbaik untuk menyewa perangkat gaming dengan harga terjangkau dan kualitas terbaik.</p>
                 </div>
             </div>
@@ -12,7 +12,23 @@
     <section id="services" class="services section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                <h2>Daftar Rental Gaming</h2>
+                <h2>Daftar Rental</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center flex-wrap">
+                        <!-- "All" option -->
+                        <a href="{{ url('rental') }}" class="badge bg-dark m-2 badge-custom">
+                            Semua
+                        </a>
+                        <!-- Categories -->
+                        @foreach($list_kategori as $kategori)
+                        <a href="{{ url('rental?id_kategori=' . $kategori->id) }}" class="badge bg-dark m-2 badge-custom">
+                            {{ $kategori->judul }}
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
             </div>
             <div class="row justify-content-center">
                 @if($produk->isEmpty())
@@ -28,7 +44,7 @@
                         </div>
                         <hr>
                         <div class="badge-container mb-3">
-                            <span class="badge bg-dark">{{ $item->tipe }}</span>
+                            <span class="badge bg-dark">{{ $item->kategori->judul }}</span>
                         </div>
                         <h4 class="mt-2 product-title">
                             <a class="text-decoration-none" style="cursor: pointer;">{{ Str::limit($item->nama, 40, '...') }}</a>
@@ -58,6 +74,7 @@
             </div>
         </div>
     </section>
+    
     @foreach($produk as $item)
     <!-- Modal Detail Produk -->
     <div class="modal fade" id="modalDetail{{ $item->id }}" tabindex="-1" aria-labelledby="modalLabel{{ $item->id }}" aria-hidden="true">
@@ -72,7 +89,7 @@
                         <img src="{{ url($item->gambar) }}" alt="{{ $item->nama }}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
                     </div>
                     <hr>
-                    <p><strong>Tipe:</strong> {{ $item->tipe }}</p>
+                    <p><strong>Tipe:</strong> {{ $item->kategori->judul }}</p>
                     <p class="text-muted">{{ Str::limit($item->deskripsi, 150, '...') }}</p>
                     <p class="fw-bold">Harga:</p>
                     <ul class="list-unstyled">
@@ -107,6 +124,12 @@
 
     <style>
         /* Styling Product Card */
+        /* Badge Styling */
+        .badge {
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
 
         .product-card {
             background-color: #fff;

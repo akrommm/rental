@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\RentalController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Front\BerandaController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('components.app');
+    return redirect('beranda');
 });
 
+// login
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'loginProcess']);
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
 // Bagian Admin
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     include "_/admin.php";
 });
 

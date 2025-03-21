@@ -27,6 +27,11 @@
                         <a href="{{ url('admin/manajemen-produk') }}"><i class="anticon anticon-book"></i> Manajemen Produk</a>
                     </li>
                 </ul>
+                <ul class="dropdown-menu">
+                    <li class="{{request()->is('admin/kategori-produk') ? 'active' : ''}} ">
+                        <a href="{{ url('admin/kategori-produk') }}"><i class="fas fa-paperclip"></i> Kategori Produk</a>
+                    </li>
+                </ul>
             </li>
             <hr>
             <li class="nav-item {{request()->is('beranda') ? 'active' : ''}}">

@@ -18,10 +18,9 @@
                 <div class="col-lg-4 col-md-4 footer-links">
                     <h4>Navigasi</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/') }}">Beranda</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('beranda') }}">Beranda</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{ url('rental') }}">Daftar Rental</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('jadwal') }}">Jadwal</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('kontak') }}">Kontak</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('login') }}">Login</a></li>
                     </ul>
                 </div>
 

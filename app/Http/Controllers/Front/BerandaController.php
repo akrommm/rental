@@ -11,7 +11,6 @@ class BerandaController extends Controller
 {
     function __invoke()
     {
-        // Ambil 4 produk terbaru dari database
         $produk = Produk::latest()->take(4)->get();
 
         // Kirim data ke view

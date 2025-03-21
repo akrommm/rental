@@ -10,7 +10,7 @@
                         <tr>
                             <th class="text-center" style="width: 1%; color: white;">No</th>
                             <th class="text-center" style="color: white;" width="230px">Nama</th>
-                            <th class="text-center" style="color: white;" width="230px">Tipe</th>
+                            <th class="text-center" style="color: white;" width="230px">Kategori</th>
                             <th class="text-center" style="color: white;" width="230px">Status</th>
                             <th class="text-center" style="color: white;" width="120px">Aksi</th>
                         </tr>
@@ -20,7 +20,7 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">{{ $p->nama }}</td>
-                            <td class="text-center">{{ $p->tipe }}</td>
+                            <td class="text-center">{{ $p->kategori->judul }}</td>
                             <td class="text-center">
                                 @if ($p->status == 'Maintenance')
                                 <label class="btn btn-warning">{{$p->status}}</label>
@@ -73,15 +73,14 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="nama" class="control-label">Tipe</label>
-                                                <select class="form-control" name="tipe" id="tipe">
-                                                    <option value="{{ $p->tipe }}">{{ $p->tipe }}</option>
-                                                    <option value="PlayStation">PlayStation</option>
-                                                    <option value="Xbox">Xbox</option>
-                                                    <option value="Nintendo Switch">Nintendo Switch</option>
-                                                    <option value="Retro Console">Retro Console</option>
+                                                <select class="form-control default-select" name="id_kategori" id="id_kategori">
+                                                    <option value="{{ $p->id_kategori }}">{{ $p->kategori->judul }}</option>
+                                                    @foreach($list_kategori as $kategori)
+                                                    <option value="{{ $kategori->id }}">{{ $kategori->judul }}</option>
+                                                    @endforeach
                                                 </select>
-                                                @error('tipe')
-                                                <p class="text-danger" style="font-size: 12px">* {{ $message }}</p>
+                                                @error('id_kategori')
+                                                <p class="text-danger" style="font-size: 12px">* {{ $message }}</p style="font-size: 12px">
                                                 @enderror
                                             </div>
                                         </div>
@@ -174,16 +173,17 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="nama" class="control-label">Tipe</label>
-                                    <select class="form-control" name="tipe" id="tipe" required>
-                                        <option value="">Pilih Tipe</option>
-                                        <option value="PlayStation">PlayStation</option>
-                                        <option value="Xbox">Xbox</option>
-                                        <option value="Nintendo Switch">Nintendo Switch</option>
-                                        <option value="Retro Console">Retro Console</option>
+                                    <label for="nama" class="control-label">Kategori</label>
+                                    <select class="form-control" name="id_kategori" id="id_kategori" required>
+                                        <option value="">...</option>
+                                        @foreach($list_kategori as $kategori)
+                                        @if ($kategori->status == 1)
+                                        <option value="{{ $kategori->id }}">{{ $kategori->judul }}</option>
+                                        @endif
+                                        @endforeach
                                     </select>
-                                    @error('tipe')
-                                    <p class="text-danger" style="font-size: 12px">* {{ $message }}</p>
+                                    @error('id_kategori')
+                                    <p class="text-danger" style="font-size: 12px">* {{ $message }}</p style="font-size: 12px">
                                     @enderror
                                 </div>
                             </div>

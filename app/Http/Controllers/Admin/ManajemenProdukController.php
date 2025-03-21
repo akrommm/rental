@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\KategoriProduk;
 use App\Models\Admin\Produk;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ class ManajemenProdukController extends Controller
     public function index()
     {
         $produk = Produk::all();
-        return view('admin.produk.index', compact('produk'));
+        $list_kategori = KategoriProduk::all();
+        return view('admin.produk.index', compact('produk', 'list_kategori'));
     }
 
     public function show($id)
@@ -27,7 +29,7 @@ class ManajemenProdukController extends Controller
             'nama' => 'required|string|max:255',
             'harga_perhari' => 'required',
             'harga_perhari' => 'required',
-            'tipe' => 'required',
+            'id_kategori' => 'required',
             'status' => 'required',
             'gambar' => 'image|mimes:png,jpg,jpeg|max:5120',
         ], [
@@ -36,7 +38,7 @@ class ManajemenProdukController extends Controller
             'nama.max' => 'Nama Maksimal 255 Karakter',
             'harga_perhari.required' => 'Harga Perjam Harus Diisi',
             'harga_perhari.required' => 'Harga Perhari Harus Diisi',
-            'tipe.required' => 'Tipe Harus Dipilih',
+            'id_kategori.required' => 'id_kategori Harus Dipilih',
             'status.required' => 'Status Harus Dipilih',
             'gambar.image' => 'Gambar Harus Berupa Image',
             'gambar.mimes' => 'Gambar Harus Berekstensi png, jpg, atau jpeg',
@@ -51,7 +53,7 @@ class ManajemenProdukController extends Controller
 
         $produk = new Produk();
         $produk->nama = request('nama');
-        $produk->tipe = request('tipe');
+        $produk->id_kategori = request('id_kategori');
         $produk->harga_perjam = request('harga_perjam');
         $produk->harga_perhari = request('harga_perhari');
         $produk->status = request('status');
@@ -69,7 +71,7 @@ class ManajemenProdukController extends Controller
             'nama' => 'required|string|max:255',
             'harga_perhari' => 'required',
             'harga_perhari' => 'required',
-            'tipe' => 'required',
+            'id_kategori' => 'required',
             'status' => 'required',
             'gambar' => 'image|mimes:png,jpg,jpeg|max:5120',
         ], [
@@ -78,7 +80,7 @@ class ManajemenProdukController extends Controller
             'nama.max' => 'Nama Maksimal 255 Karakter',
             'harga_perhari.required' => 'Harga Perjam Harus Diisi',
             'harga_perhari.required' => 'Harga Perhari Harus Diisi',
-            'tipe.required' => 'Tipe Harus Dipilih',
+            'id_kategori.required' => 'id_kategori Harus Dipilih',
             'status.required' => 'Status Harus Dipilih',
             'gambar.image' => 'Gambar Harus Berupa Image',
             'gambar.mimes' => 'Gambar Harus Berekstensi png, jpg, atau jpeg',
@@ -93,7 +95,7 @@ class ManajemenProdukController extends Controller
 
         $produk = Produk::find($id);
         if (request('nama')) $produk->nama = request('nama');
-        if (request('tipe')) $produk->tipe = request('tipe');
+        if (request('id_kategori')) $produk->id_kategori = request('id_kategori');
         if (request('harga_perhari')) $produk->harga_perhari = request('harga_perhari');
         if (request('harga_perjam')) $produk->harga_perjam = request('harga_perjam');
         if (request('status')) $produk->status = request('status');

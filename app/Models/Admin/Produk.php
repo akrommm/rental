@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\ModelAuthenticate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class Produk extends ModelAuthenticate
@@ -21,6 +22,11 @@ class Produk extends ModelAuthenticate
         'status',
         'gambar',
     ];
+
+    public function kategori(): BelongsTo
+    {
+        return $this->belongsTo(KategoriProduk::class, 'id_kategori', 'id');
+    }
 
     function handleUploadGambar()
     {

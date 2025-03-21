@@ -1,12 +1,12 @@
 <x-base>
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
-        <div class="container">
+        <div class="container text-center">
             <div class="row">
                 <div class="col-lg-12 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
                     <h1>Selamat Datang di A-Labs Rental</h1>
                     <h2> Solusi Terbaik untuk Sewa PlayStation & Alat Gaming!</h2>
-                    <div class="d-flex justify-content-center justify-content-lg-start">
+                    <div class="d-flex justify-content-center ">
                         <a href="#about" class="btn-get-started scrollto">Mulai</a>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                             </div>
                             <hr>
                             <div class="badge-container mb-3">
-                                <span class="badge bg-dark">{{ $item->tipe }}</span>
+                                <span class="badge bg-dark">{{ $item->kategori->judul }}</span>
                             </div>
                             <h4 class="mt-2 product-title">
                                 <a class="text-decoration-none" style="cursor: pointer;">{{ Str::limit($item->nama, 40, '...') }}</a>
@@ -147,6 +147,38 @@
             </div>
         </section>
 
+
+        <!-- ======= Kontak Kami ======= -->
+        <section id="contact" class="contact">
+            <div class="container" data-aos="fade-up">
+                <div class="section-title">
+                    <h2>Kontak Kami</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="info-box">
+                            <i class="bx bx-map"></i>
+                            <h3>Alamat Kami</h3>
+                            <p>Jl. Contoh No. 123, Kota XYZ</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.2675111660286!2d-122.08385138469183!3d37.386051979832874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb24b5f5b9f01%3A0x409aa58f6d6d0b09!2sGoogleplex!5e0!3m2!1sen!2sus!4v1629487774143!5m2!1sen!2sus" width="100%" height="250" style="border-radius:3px;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="info-box">
+                            <i class="bx bx-envelope"></i>
+                            <h3>Email Kami</h3>
+                            <p>support@alabsrental.com</p>
+                        </div>
+                        <div class="info-box">
+                            <i class="bx bx-phone-call"></i>
+                            <h3>Hubungi Kami</h3>
+                            <p>+62 8953-1241-776</p>
+                            <a href="https://wa.me/6289531231716?text=Halo%20Admin,%20saya%20tertarik%20menyewa%20alat%20gaming!" target="_blank" class="btn btn-success mt-3 btn-interactive">Chat via WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     @foreach($produk as $item)
@@ -163,7 +195,7 @@
                         <img src="{{ url($item->gambar) }}" alt="{{ $item->nama }}" class="img-fluid rounded" style="max-height: 200px; object-fit: cover;">
                     </div>
                     <hr>
-                    <p><strong>Tipe:</strong> {{ $item->tipe }}</p>
+                    <p><strong>Tipe:</strong> {{ $item->kategori->judul }}</p>
                     <p class="text-muted">{{ Str::limit($item->deskripsi, 150, '...') }}</p>
                     <p class="fw-bold">Harga:</p>
                     <ul class="list-unstyled">
